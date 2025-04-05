@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>SP90課題リンク集</title>
+	<style>
+		body {
+			color: dimgray;
+			font-size: 14px;
+		}
+		ol {
+			counter-reset: step;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			line-height: 2.25;
+		}
+		ol li{
+			width: fit-content;
+		}
+		ol li::before {
+			counter-increment: step;
+			content: "Step" counter(step) "：";
+		}
+		ol li:hover {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h1>SP90課題リンク集</h1>
+	<main>
+		<h2>ショッピングサイトの感謝機能</h2>
+		<ol>
+			<li><a href="http://localhost:8080/admin/items" target="_blank">管理者用商品一覧画面の追加</a></li>
+			<li><a href="http://localhost:8080/admin/items" target="_blank">商品管理画面の追加</a></li>
+			<li><a href="http://localhost:8080/admin/items" target="_blank">カテゴリ管理機能の追加</a></li>
+			<li><a href="http://localhost:8080/admin/login" target="_blank">管理者ログイン機能の追加</a></li>
+			<li><a href="http://localhost:8080/admin/customers" target="_blank">顧客管理機能の追加</a></li>
+			<li><a href="http://localhost:8080/login" target="_blank">顧客管理機能の追加・テーブル結合の利用</a></li>
+		</ol>
+	</main>
+</body>
+</html>
