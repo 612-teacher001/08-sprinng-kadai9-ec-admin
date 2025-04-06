@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Category;
 import com.example.demo.repository.CategoryRepository;
@@ -15,6 +17,31 @@ public class CategoryAdminController {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	/**
+	 * カテゴリを新規登録する
+	 * @param name カテゴリ名
+	 * @return カテゴリ一覧画面のThymeleafテンプレート名
+	 */
+	@PostMapping("/admin/categories/add")
+	public String store(@RequestParam String name) {
+		// リクエストパラメータをもとに登録するカテゴリをインスタンス化
+		Category target = new Category(name);
+		// カテゴリインスタンスをcategoriesテーブルに登録
+		categoryRepository.save(target);
+		// 画面遷移
+		return "redirect:/admin/categories";
+	}
+	
+	/**
+	 * カテゴリ登録画面を表示する
+	 * @return カテゴリ登録画面のThymeleafテンプレート名
+	 */
+	@GetMapping("/admin/categories/add")
+	public String create() {
+		// 画面遷移
+		return "admin/addCategory";
+	}
 	
 	/**
 	 * カテゴリ一覧画面を表示する
