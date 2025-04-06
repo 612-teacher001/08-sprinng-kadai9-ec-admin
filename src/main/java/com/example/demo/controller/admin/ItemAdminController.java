@@ -24,6 +24,11 @@ public class ItemAdminController {
 	@Autowired
 	ItemRepository itemRepository;
 	
+	/**
+	 * 書品を削除する
+	 * @param id 商品ID
+	 * @return 商品一覧画面のThymeleafテンプレート名
+	 */
 	@PostMapping("/admin/items/{id}/delete")
 	public String delete(@PathVariable int id) {
 		// パスパラメータで指定された商品を削除
