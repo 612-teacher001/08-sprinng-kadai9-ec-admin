@@ -25,6 +25,38 @@ public class Item {
 	@Transient // 永続化対象外
 	private Integer quantity; // 数量
 
+	/**
+	 * TODO: SP90で新規追加
+	 * デフォルトコンストラクタ
+	 */
+	public Item() {}
+	
+	/**
+	 * TODO: SP90で新規追加
+	 * コンストラクタ
+	 * @param categoryId カテゴリID
+	 * @param name       商品名
+	 * @param price      価格
+	 */
+	public Item(int categoryId, String name, int price) {
+		this.categoryId = categoryId;
+		this.name = name;
+		this.price = price;
+	}
+
+	/**
+	 * TODO: SP90で新規追加
+	 * コンストラクタ
+	 * @param id         商品ID
+	 * @param categoryId カテゴリID
+	 * @param name       商品名
+	 * @param price      価格
+	 */
+	public Item(int id, int categoryId, String name, int price) {
+		this(categoryId, name, price);
+		this.id = id;
+	}
+
 	public Integer getId() {
 		return id;
 	}

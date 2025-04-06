@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+html {
+	font-size: 62.5%;
+}
+body {
+	color: dimgray;
+	font-size: 1.4rem;
+}
+/*　フッタのスタイル　*/
+#copyright {
+	margin: 1.25rem 0;
+}
+
+/* カテゴリリンクのスタイル */
+#category-links {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#category-links li {
+	display: inline;
+}
+#category-links li a {
+	margin-right: 5px;
+}
+
+/* 商品一覧のスタイル */
+.list-table,
+.list-table th, 
+.list-table td {
+	border-width: 0;
+}
+.list-table th, 
+.list-table td {
+	padding: 0.25rem 0.75rem;
+	border-width: 0;
+}
+.list-table th {
+	color: gainsboro;
+	background-color: dimgray;
+}
+.list-table tr:nth-child(odd) td {
+	background-color: gainsboro;
+}
+
+/* 商品登録・商品更新のスタイル */
+.list-form, 
+.list-form th, 
+.list-form td {
+	border-width: 0;
+}
+.list-form th, 
+.list-form td {
+	padding: 0.25rem 0.75rem;
+}
+.list-form th {
+	color: gainsboro;
+	background-color: dimgray;
+}
+.list-form td {
+	background-color: lightgray;
+}
