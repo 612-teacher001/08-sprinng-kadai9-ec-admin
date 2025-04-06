@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>顧客詳細</title>
+	<link rel="stylesheet" href="/css/admin-style.css" />
+</head>
+<body>
+	<header>
+		<h1>顧客詳細</h1>
+	</header>
+	<main>
+		<article>
+			<section id="customer">
+				<h2>顧客情報</h2>
+				<table class="list-table" border="1">
+					<tr>
+						<th>顧客ID</th>
+						<th>顧客名</th>
+						<th>住所</th>
+						<th>電話番号</th>
+						<th>メールアドレス</th>
+					</tr>
+					<tr>
+						<td th:text="${customer.id}"></td>
+						<td th:text="${customer.name}"></td>
+						<td th:text="${customer.address}"></td>
+						<td th:text="${customer.tel}"></td>
+						<td th:text="${customer.email}"></td>
+					</tr>
+				</table>
+			</section>
+			<section id="orders">
+				<h2>注文情報</h2>
+				<table class="list-table" border="1">
+					<tr>
+						<th>注文ID</th>
+						<th>注文日</th>
+						<th>合計金額</th>
+					</tr>
+					<tr th:each="order:${orders}">
+						<td th:text="${order.id}"></td>
+						<td th:text="${order.orderedOn}"></td>
+						<td th:text="${order.totalPrice}"></td>
+					</tr>
+				</table>
+			</section>
+			<section id="order_details">
+				<h2>注文明細</h2>
+				<table class="list-table" border="1">
+					<tr>
+						<th>商品ID</th>
+						<th>数量</th>
+					</tr>
+					<tr th:each="detail:${orderDetails}">
+						<td th:text="${detail.itemId}"></td>
+						<td th:text="${detail.quantity}"></td>
+					</tr>
+				</table>
+			</section>
+		</article>
+		<a href="/admin/items">商品管理</a>
+	</main>
+	<footer>
+		<div id="copyright">&copy;2025 Office HOGE.</div>
+	</footer>
+</body>
+</html>
