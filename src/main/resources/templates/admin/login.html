@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>管理者ログイン</title>
+	<link rel="stylesheet" href="/css/admin-style.css" />
+</head>
+<body>
+	<header>
+		<h1>管理者ログイン</h1>
+	</header>
+	<main>
+		<article>
+			<form action="/admin/login" method="post">
+				<input type="text" name="name" placeholder="ユーザ名" /><br />
+				<input type="text" name="password" placeholder="パスワード" /><br />
+				<button>ログイン</button>
+			</form>
+			<p class="error" th:text="${error}"></p>
+		</article>
+	</main>
+	<footer>
+		<div id="copyright">&copy;2025 Office HOGE.</div>
+	</footer>
+</body>
+</html>
