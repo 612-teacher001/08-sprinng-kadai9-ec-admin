@@ -15,6 +15,32 @@ public class Category {
 
 	private String name; // カテゴリー名
 
+	/**
+	 * TODO: SP90で新規追加
+	 * デフォルトコンストラクタ
+	 */
+	public Category() {}
+	
+	/**
+	 * TODO: SP90で新規追加
+	 * コンストラクタ
+	 * @param name カテゴリ名
+	 */
+	public Category(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * TODO: SP90で新規追加
+	 * コンストラクタ
+	 * @param id   カテゴリID
+	 * @param name カテゴリ名
+	 */
+	public Category(int id, String name) {
+		this(name);
+		this.id = id;
+	}
+
 	// ゲッター
 	public Integer getId() {
 		return id;
