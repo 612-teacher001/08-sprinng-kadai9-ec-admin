@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>カテゴリ一覧</title>
+	<link rel="stylesheet" href="/css/admin-style.css" />
+</head>
+<body>
+	<header>
+		<h1>カテゴリ一覧</h1>
+	</header>
+	<main>
+		<article>
+			<table class="list-table" border="1">
+				<tr>
+					<th>ID</th>
+					<th>カテゴリ名</th>
+					<th>更新</th>
+					<th>削除</th>
+				</tr>
+				<tr th:each="category:${categories}">
+					<td th:text="${category.id}"></td>
+					<td th:text="${category.name}"></td>
+					<td>
+						<form th:action="'/admin/categories/' + ${category.id} + '/edit'">
+							<button>更新</button>
+						</form>
+					</td>
+					<td>
+						<form th:action="'/admin/categories/' + ${category.id} + '/delete'" method="post">
+							<button>削除</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<a href="/admin/categories/add">新規登録</a><br />
+			<a href="/admin/items">商品管理</a>
+		</article>
+	</main>
+	<footer>
+		<div id="copyright">&copy;2025 Office HOGE.</div>
+	</footer>
+</body>
+</html>
