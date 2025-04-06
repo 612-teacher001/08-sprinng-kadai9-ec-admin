@@ -23,6 +23,14 @@ public class ItemAdminController {
 	
 	@Autowired
 	ItemRepository itemRepository;
+	
+	@PostMapping("/admin/items/{id}/delete")
+	public String delete(@PathVariable int id) {
+		// パスパラメータで指定された商品を削除
+		itemRepository.deleteById(id);
+		// 画面遷移
+		return "redirect:/admin/items";
+	}
 
 	/**
 	 * 商品を更新する

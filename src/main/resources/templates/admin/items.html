@@ -30,6 +30,7 @@
 					<th>商品名</th>
 					<th>価格</th>
 					<th>更新</th>
+					<th>削除</th>
 				</tr>
 				<tr th:each="item:${items}">
 					<td th:text="${item.id}"></td>
@@ -38,6 +39,11 @@
 					<td>
 						<form th:action="'/admin/items/' + ${item.id} + '/edit'">
 							<button>更新</button>
+						</form>
+					</td>
+					<td>
+						<form th:action="'/admin/items/' + ${item.id} + '/delete'" method="post">
+							<button>削除</button>
 						</form>
 					</td>
 				</tr>
