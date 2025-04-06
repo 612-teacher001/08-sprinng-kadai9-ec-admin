@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,6 +18,36 @@ public class CategoryAdminController {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@PostMapping("/admin/categories/{id}/edit")
+	public String store(
+			@PathVariable int id,
+			@RequestParam String name) {
+		// パスパラメータとリクエストパラメータより更新するカテゴリをインスタンス化
+		Category target = new Category(id, name);
+		// カテゴリインスタンスをcategoriesテーブルに登録
+		categoryRepository.save(target);
+		// 画面遷移
+		return "redirect:/admin/categories";
+	}
+	
+	/**
+	 * カテゴリ更新画面を表示する
+	 * @param id    更新するカテゴリのカテゴリID
+	 * @param model 遷移先画面に引き継ぐデータを登録するスコープ
+	 * @return カテゴリ更新画面のThymeleafテンプレート名
+	 */
+	@GetMapping("/admin/categories/{id}/edit")
+	public String edit(
+			@PathVariable int id,
+			Model model) {
+		// パスパラメータをもとにcategoriesテーブルからカテゴリを取得
+		Category target = categoryRepository.findById(id).get();
+		// 遷移先画面に引き継ぐために取得したリストをスコープに登録
+		model.addAttribute("category", target);
+		// 画面遷移
+		return "admin/editCategory";
+	}
 	
 	/**
 	 * カテゴリを新規登録する
