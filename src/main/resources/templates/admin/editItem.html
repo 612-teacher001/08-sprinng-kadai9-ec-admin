@@ -2,14 +2,14 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>商品登録</title>
+	<title>商品更新</title>
 	<link rel="stylesheet" href="/css/admin-style.css" />
 	<style>
 	</style>
 </head>
 <body>
 	<header>
-		<h1>商品登録</h1>
+		<h1>商品更新</h1>
 	</header>
 	<main>
 		<article>
@@ -21,24 +21,25 @@
 						<select name="categoryId">
 							<option th:each="category:${categories}"
 									th:value="${category.id}"
-									th:text="${category.name}"></option>
+									th:text="${category.name}"
+									th:selected="${category.id == item.categoryId}"></option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<th>商品名</th>
 					<td>
-						<input type="text" name="name" />
+						<input type="text" name="name" th:value="${item.name}" />
 					</td>
 				</tr>
 				<tr>
 					<th>価格</th>
 					<td>
-						<input type="number" name="price" />
+						<input type="number" name="price" th:value="${item.price}" />
 					</td>
 				</tr>
 			</table>
-			<button formaction="/admin/items/add" formmethod="post">登録</button>
+			<button th:formaction="'/admin/items/' + ${item.id} + '/edit'" formmethod="post">更新</button>
 			</form>
 		</article>
 	</main>

@@ -29,11 +29,17 @@
 					<th>商品ID</th>
 					<th>商品名</th>
 					<th>価格</th>
+					<th>更新</th>
 				</tr>
 				<tr th:each="item:${items}">
 					<td th:text="${item.id}"></td>
 					<td th:text="${item.name}"></td>
 					<td th:text="${item.price}"></td>
+					<td>
+						<form th:action="'/admin/items/' + ${item.id} + '/edit'">
+							<button>更新</button>
+						</form>
+					</td>
 				</tr>
 			</table>
 			<a href="/admin/items/add">新規商品登録</a>

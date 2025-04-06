@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,6 +24,58 @@ public class ItemAdminController {
 	@Autowired
 	ItemRepository itemRepository;
 
+	/**
+	 * 商品を更新する
+	 * @param categoryId カテゴリID
+	 * @param name       商品名
+	 * @param price      価格
+	 * @return 商品一覧画面のThymeleafテンプレート名
+	 */
+	@PostMapping("/admin/items/{id}/edit")
+	public String update(
+			@PathVariable int id,
+			@RequestParam(defaultValue = "0") int categoryId,
+			@RequestParam String name,
+			@RequestParam(defaultValue = "0") int price) {
+		// リクエストパラメータをもとに更新対象の商品をインスタンス化
+		Item target = new Item(id, categoryId, name, price);
+		// 商品インスタンスをitemsテーブルに再登録
+		itemRepository.save(target);
+		// 画面遷移
+		return "redirect:/admin/items";
+	}
+	
+	/**
+	 * 商品の更新画面を表示する
+	 * @param model 遷移先画面に引き継ぐデータを登録するスコープ
+	 * @return 商品更新画面のThymeleafテンプレート名
+	 */
+	@GetMapping("/admin/items/{id}/edit")
+	public String edit(
+			@PathVariable int id,
+			Model model) {
+		// パスパラメータをもとに更新対象の書品をitemsテーブルから取得
+		Item target = itemRepository.findById(id).get();
+		
+		// カテゴリセレクトボックス用のカテゴリリストを取得
+		List<Category> categoryList = categoryRepository.findAll();
+		
+		// 遷移先画面に引き継ぐために取得したリストをスコープに登録
+		model.addAttribute("categories", categoryList);
+		model.addAttribute("item", target);
+		
+		// 画面遷移
+		return "admin/editItem";
+	}
+	
+	
+	/**
+	 * 商品を新規登録する
+	 * @param categoryId カテゴリID
+	 * @param name       商品名
+	 * @param price      価格
+	 * @return 商品一覧画面のThymeleafテンプレート名
+	 */
 	@PostMapping("/admin/items/add")
 	public String store(
 			@RequestParam(defaultValue = "0") int categoryId,
