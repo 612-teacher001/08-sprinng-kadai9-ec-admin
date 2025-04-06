@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>商品登録</title>
+	<link rel="stylesheet" href="/css/admin-style.css" />
+	<style>
+	</style>
+</head>
+<body>
+	<header>
+		<h1>商品登録</h1>
+	</header>
+	<main>
+		<article>
+			<form action="/admin/items">
+			<table class="list-form" border="1">
+				<tr>
+					<th>カテゴリID</th>
+					<td>
+						<select name="categoryId">
+							<option th:each="category:${categories}"
+									th:value="${category.id}"
+									th:text="${category.name}"></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>商品名</th>
+					<td>
+						<input type="text" name="name" />
+					</td>
+				</tr>
+				<tr>
+					<th>価格</th>
+					<td>
+						<input type="number" name="price" />
+					</td>
+				</tr>
+			</table>
+			<button formaction="/admin/items/add" formmethod="post">登録</button>
+			</form>
+		</article>
+	</main>
+	<footer>
+		<div id="copyright">&copy;2025 Office HOGE.</div>
+	</footer>
+</body>
+</html>

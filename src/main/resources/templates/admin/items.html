@@ -3,19 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>商品一覧</title>
-	<style>
-		#category-links {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-		}
-		#category-links li {
-			display: inline;
-		}
-		#category-links li a {
-			margin-right: 5px;
-		}
-	</style>
+	<link rel="stylesheet" href="/css/admin-style.css" />
 </head>
 <body>
 	<header>
@@ -36,18 +24,31 @@
 					   -->
 				</li>
 			</ul>
-			<table border="1">
+			<table class="list-table" border="1">
 				<tr>
 					<th>商品ID</th>
 					<th>商品名</th>
 					<th>価格</th>
+					<th>更新</th>
+					<th>削除</th>
 				</tr>
 				<tr th:each="item:${items}">
 					<td th:text="${item.id}"></td>
 					<td th:text="${item.name}"></td>
 					<td th:text="${item.price}"></td>
+					<td>
+						<form th:action="'/admin/items/' + ${item.id} + '/edit'">
+							<button>更新</button>
+						</form>
+					</td>
+					<td>
+						<form th:action="'/admin/items/' + ${item.id} + '/delete'" method="post">
+							<button>削除</button>
+						</form>
+					</td>
 				</tr>
 			</table>
+			<a href="/admin/items/add">新規商品登録</a>
 		</article>
 	</main>
 	<footer>
