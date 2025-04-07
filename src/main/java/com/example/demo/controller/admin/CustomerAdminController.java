@@ -1,6 +1,5 @@
 package com.example.demo.controller.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.entity.Customer;
 import com.example.demo.entity.Order;
-import com.example.demo.entity.OrderDetail;
+import com.example.demo.entity.VOrderDetail;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.OrderRepository;
+import com.example.demo.repository.VOrderDetalsRepository;
 
 @Controller
 public class CustomerAdminController {
@@ -24,9 +24,13 @@ public class CustomerAdminController {
 	
 	@Autowired
 	OrderRepository orderRepository;
+
 	
 	@Autowired
 	OrderDetailRepository detailRepository;
+	
+	@Autowired
+	VOrderDetalsRepository vOrderDetailRepository;
 	
 	@GetMapping("/admin/customers/{id}/orders")
 	public String orders(
@@ -37,10 +41,7 @@ public class CustomerAdminController {
 		// 顧客の注文リストを取得
 		List<Order> orderList = orderRepository.findByCustomerId(id);
 		// 注文リストに紐づく注文明細リストを取得
-		List<OrderDetail> detailList = new ArrayList<OrderDetail>();
-		for (Order order : orderList) {
-			detailList.addAll(detailRepository.findByOrderId(order.getId()));
-		}
+		List<VOrderDetail> detailList = vOrderDetailRepository.findByCustomerId(id);
 		
 		// 遷移先画面に引き継ぐために取得したインスタンスとリストをスコープに登録
 		model.addAttribute("customer", target);
