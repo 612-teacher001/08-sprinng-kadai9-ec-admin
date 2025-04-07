@@ -50,13 +50,29 @@
 				<table class="list-table" border="1">
 					<tr>
 						<th>商品ID</th>
+						<th>商品名</th>
+						<th>単価</th>
 						<th>数量</th>
+						<th>小計</th>
 					</tr>
 					<tr th:each="detail:${orderDetails}">
 						<td th:text="${detail.itemId}"></td>
+						<td th:text="${detail.name}"></td>
+						<td th:text="${detail.price}"></td>
 						<td th:text="${detail.quantity}"></td>
+						<td th:text="${detail.price * detail.quantity}"></td>
 					</tr>
 				</table>
+<!--				<table class="list-table" border="1">-->
+<!--					<tr>-->
+<!--						<th>商品ID</th>-->
+<!--						<th>数量</th>-->
+<!--					</tr>-->
+<!--					<tr th:each="detail:${orderDetails}">-->
+<!--						<td th:text="${detail.itemId}"></td>-->
+<!--						<td th:text="${detail.quantity}"></td>-->
+<!--					</tr>-->
+<!--				</table>-->
 			</section>
 		</article>
 		<a href="/admin/items">商品管理</a>
